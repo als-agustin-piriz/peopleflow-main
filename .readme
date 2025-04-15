@@ -1,0 +1,35 @@
+# 🧩 People Flow — BFF + Shell + Microfrontend
+
+Este proyecto implementa una arquitectura basada en **Module Federation** con un **Shell** (SPA) que es servido por un **BFF (Backend For Frontend)** construido con **Express**. El Shell puede cargar N microfrontends.
+
+---
+
+## 📦 Repos / Microfrontends
+
+- `Shell (este repo)` → Actúa como **host**
+- `mfeUno` → Un microfrontend remoto (`http://localhost:3001/remoteEntry.js`)
+
+---
+
+## 🧱 Arquitectura
+
+- **Webpack Client Config**:
+  - Compila y expone el frontend (`client/index.jsx`)
+  - Usa `ModuleFederationPlugin` para cargar microfrontends remotos
+  - Usa `HtmlWebpackPlugin` para generar `index.html` con placeholder `__DATA__`
+
+- **Webpack Server Config**:
+  - Compila el servidor Express
+  - El server:
+    - Sirve los archivos estáticos desde `/static`
+    - Inyecta datos (ej: desde APIs) al HTML (`window.__INITIAL_DATA__`)
+    - Actúa como BFF: puede manejar sesiones, rutas, autenticación, etc.
+
+---
+
+## 🚀 Cómo levantarlo
+
+### 1. Instalar dependencias
+
+```bash
+yarn
