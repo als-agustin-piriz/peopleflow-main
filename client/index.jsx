@@ -41,6 +41,21 @@ const App = () => {
         }
     }
 
+    const apiTest = async () => {
+        try {
+            const { data } = await axios.post(`/user/hola`);
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                // Aquí manejas el error 401
+                console.log('No autorizado, redirigiendo al login...');
+                // window.location.href = '/login'; // O maneja la redirección a login de otra forma
+            } else {
+                // Maneja otros errores de manera general
+                console.error('Hubo un error:', error.message);
+            }
+        }
+    }
+
     return (
         <div>
             <h1>Soy el Shell</h1>
@@ -48,6 +63,7 @@ const App = () => {
                 <MfeUno />
             </Suspense>
             <button type='button' onClick={getUserData}>Obtener usuario</button>
+            <button type='button' onClick={apiTest}>Pegada al api</button>
             <button type='button' onClick={logout}>Cerrar session</button>
         </div>
     )

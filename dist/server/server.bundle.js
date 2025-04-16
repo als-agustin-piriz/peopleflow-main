@@ -2,6 +2,37 @@ require("source-map-support").install();
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./config/index.js":
+/*!*************************!*\
+  !*** ./config/index.js ***!
+  \*************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var path = __webpack_require__(/*! path */ "path");
+var nconf = __webpack_require__(/*! nconf */ "nconf");
+var ENV = "development" || 0;
+console.log('Cargando configuración para el ambiente:', ENV);
+
+// Usa process.cwd() para obtener la ruta raíz del proyecto
+var configDir = path.join(process.cwd(), 'config');
+var envFilePath = path.join(configDir, "".concat(ENV, ".json"));
+var defaultFilePath = path.join(configDir, 'default.json');
+console.log('Archivo de configuración del ambiente:', envFilePath);
+console.log('Archivo de configuración por defecto:', defaultFilePath);
+nconf.env() // Carga variables de entorno
+.file('env', {
+  file: envFilePath
+}) // Carga el archivo del ambiente
+.file('default', {
+  file: defaultFilePath
+}); // Carga el archivo por defecto
+
+console.log('Configuración cargada:', nconf.get()); // Muestra toda la configuración cargada
+
+module.exports = nconf;
+
+/***/ }),
+
 /***/ "./package.json":
 /*!**********************!*\
   !*** ./package.json ***!
@@ -9,7 +40,7 @@ require("source-map-support").install();
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"people-flow-main","version":"1.0.0","description":"Shell con BFF + SPA + Module Federation","scripts":{"dev:client":"webpack --config webpack.config.js --watch --env target=client","dev:server":"nodemon NODE_ENV=development dist/server/server.bundle.js","dev:build":"webpack --config webpack.config.js","dev":"concurrently \\"yarn dev:client\\" \\"yarn dev:server\\"","build:prod":"webpack --config webpack.config.js --mode production","start:prod":"node dist/server/server.bundle.js"},"dependencies":{"axios":"^1.8.4","cors":"^2.8.5","express":"^4.18.2","express-session":"^1.18.1","nconf":"^0.13.0","nodemon":"^3.1.9","passport":"^0.7.0","passport-custom":"^1.1.1","react":"^18.2.0","react-dom":"^18.2.0","uuid":"^11.1.0"},"devDependencies":{"@babel/core":"^7.24.1","@babel/preset-env":"^7.24.1","@babel/preset-react":"^7.23.3","babel-loader":"^9.1.3","concurrently":"^9.1.2","dotenv-webpack":"^8.1.0","html-webpack-plugin":"^5.6.0","source-map-support":"^0.5.21","webpack":"^5.99.5","webpack-cli":"^6.0.1","webpack-dev-server":"^5.0.3","webpack-node-externals":"^3.0.0"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"people-flow-main","version":"1.0.0","description":"Shell con BFF + SPA + Module Federation","scripts":{"dev:client":"webpack --config webpack.config.js --watch --env target=client","dev:server":"nodemon NODE_ENV=development dist/server/server.bundle.js","dev:build":"webpack --config webpack.config.js","dev":"concurrently \\"yarn dev:client\\" \\"yarn dev:server\\"","build:prod":"webpack --config webpack.config.js --mode production","start:prod":"node dist/server/server.bundle.js"},"dependencies":{"axios":"^1.8.4","cors":"^2.8.5","express":"^4.18.2","express-http-proxy":"^2.1.1","express-session":"^1.18.1","nconf":"^0.13.0","nodemon":"^3.1.9","passport":"^0.7.0","passport-custom":"^1.1.1","react":"^18.2.0","react-dom":"^18.2.0","uuid":"^11.1.0"},"devDependencies":{"@babel/core":"^7.24.1","@babel/preset-env":"^7.24.1","@babel/preset-react":"^7.23.3","babel-loader":"^9.1.3","concurrently":"^9.1.2","dotenv-webpack":"^8.1.0","html-webpack-plugin":"^5.6.0","source-map-support":"^0.5.21","webpack":"^5.99.5","webpack-cli":"^6.0.1","webpack-dev-server":"^5.0.3","webpack-node-externals":"^3.0.0"}}');
 
 /***/ }),
 
@@ -330,16 +361,11 @@ module.exports = {
 /***/ ((module) => {
 
 function getHeaders(req) {
-  var _req$axios;
   var headers = {};
   var Origin = 'Origin';
   var Cookie = 'Cookie';
-  var Authorization = 'Authorization';
-  var user = req.user;
-  var token = (user === null || user === void 0 ? void 0 : user.at) || ((_req$axios = req.axios) === null || _req$axios === void 0 ? void 0 : _req$axios.defaults.headers[Authorization]);
   headers[Origin] = req.header('Host');
   headers[Cookie] = req.header(Cookie);
-  headers[Authorization] = token;
   return headers;
 }
 module.exports = {
@@ -479,6 +505,54 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./server/middlewares/proxy/index.js":
+/*!*******************************************!*\
+  !*** ./server/middlewares/proxy/index.js ***!
+  \*******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/* eslint-disable no-param-reassign */
+var proxy = __webpack_require__(/*! express-http-proxy */ "express-http-proxy");
+var _require = __webpack_require__(/*! ../../utils/helpers/service.helper */ "./server/utils/helpers/service.helper.js"),
+  getServiceBaseUrl = _require.getServiceBaseUrl,
+  ServiceKey = _require.ServiceKey;
+var _require2 = __webpack_require__(/*! ../../helpers/headers.helper */ "./server/helpers/headers.helper.js"),
+  getHeaders = _require2.getHeaders;
+function injectHeaders(req) {
+  return function (opts) {
+    var _req$user;
+    var headers = getHeaders(req);
+    opts.headers = _objectSpread(_objectSpread({}, opts.headers), headers);
+    opts.headers.Authorization = (_req$user = req.user) === null || _req$user === void 0 ? void 0 : _req$user.at;
+    return opts;
+  };
+}
+function proxyMiddleware(baseUrl) {
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    resDecorator = _ref.resDecorator;
+  return function (req, res, next) {
+    proxy(baseUrl, {
+      proxyReqOptDecorator: injectHeaders(req),
+      userResDecorator: resDecorator
+    })(req, res, next);
+  };
+}
+function declareProxies(app) {
+  var MicroServiceURL = getServiceBaseUrl(ServiceKey.UserService);
+  app.use("/user", proxyMiddleware(MicroServiceURL));
+}
+module.exports = {
+  declareProxies: declareProxies
+};
+
+/***/ }),
+
 /***/ "./server/models/ServiceResponse.js":
 /*!******************************************!*\
   !*** ./server/models/ServiceResponse.js ***!
@@ -585,6 +659,30 @@ var INVALID_TOKEN = 'INVALID_TOKEN';
 
 /***/ }),
 
+/***/ "./server/utils/helpers/service.helper.js":
+/*!************************************************!*\
+  !*** ./server/utils/helpers/service.helper.js ***!
+  \************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var nconf = __webpack_require__(/*! ../../../config */ "./config/index.js");
+var ServiceKey = {
+  UserService: 'authService'
+};
+var getServiceBaseUrl = function getServiceBaseUrl(serviceKey) {
+  var serviceUrl = nconf.get("".concat(serviceKey, ":url"));
+  if (!serviceUrl) {
+    throw new Error("No se encontr\xF3 la configuraci\xF3n para el servicio: ".concat(serviceKey));
+  }
+  return serviceUrl;
+};
+module.exports = {
+  ServiceKey: ServiceKey,
+  getServiceBaseUrl: getServiceBaseUrl
+};
+
+/***/ }),
+
 /***/ "axios":
 /*!************************!*\
   !*** external "axios" ***!
@@ -618,6 +716,17 @@ module.exports = require("express");
 
 /***/ }),
 
+/***/ "express-http-proxy":
+/*!*************************************!*\
+  !*** external "express-http-proxy" ***!
+  \*************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("express-http-proxy");
+
+/***/ }),
+
 /***/ "express-session":
 /*!**********************************!*\
   !*** external "express-session" ***!
@@ -637,6 +746,17 @@ module.exports = require("express-session");
 
 "use strict";
 module.exports = require("fs");
+
+/***/ }),
+
+/***/ "nconf":
+/*!************************!*\
+  !*** external "nconf" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("nconf");
 
 /***/ }),
 
@@ -762,6 +882,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api/auth */ "./server/api/auth/index.js");
 /* harmony import */ var _api_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_api_auth__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _middlewares_proxy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./middlewares/proxy */ "./server/middlewares/proxy/index.js");
+/* harmony import */ var _middlewares_proxy__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_middlewares_proxy__WEBPACK_IMPORTED_MODULE_1__);
 var express = __webpack_require__(/*! express */ "express");
 var _require = __webpack_require__(/*! ./app */ "./server/app/index.js"),
   micrositeAppRouter = _require.micrositeAppRouter;
@@ -770,6 +892,7 @@ var _require2 = __webpack_require__(/*! ./api */ "./server/api/index.js"),
 var _require3 = __webpack_require__(/*! ./middlewares/axios */ "./server/middlewares/axios/index.js"),
   axiosMiddleware = _require3.axiosMiddleware;
 var pkg = __webpack_require__(/*! ../package.json */ "./package.json");
+
 
 var app = express();
 var cors = __webpack_require__(/*! cors */ "cors");
@@ -781,6 +904,7 @@ app.use(cors({
   credentials: true
 }));
 (0,_api_auth__WEBPACK_IMPORTED_MODULE_0__.setupAuth)(app);
+(0,_middlewares_proxy__WEBPACK_IMPORTED_MODULE_1__.declareProxies)(app);
 app.use("/api/".concat(pkg.name), axiosMiddleware, micrositeApiRouter);
 app.use("/", micrositeAppRouter);
 app.listen(PORT, function () {

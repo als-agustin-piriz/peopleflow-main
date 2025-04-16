@@ -117,12 +117,50 @@ var App = function App() {
       return _ref3.apply(this, arguments);
     };
   }();
+  var apiTest = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var _yield$axios$post3, data;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("/user/hola");
+          case 3:
+            _yield$axios$post3 = _context4.sent;
+            data = _yield$axios$post3.data;
+            _context4.next = 10;
+            break;
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            if (_context4.t0.response && _context4.t0.response.status === 401) {
+              // Aquí manejas el error 401
+              console.log('No autorizado, redirigiendo al login...');
+              // window.location.href = '/login'; // O maneja la redirección a login de otra forma
+            } else {
+              // Maneja otros errores de manera general
+              console.error('Hubo un error:', _context4.t0.message);
+            }
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 7]]);
+    }));
+    return function apiTest() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Soy el Shell"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Cargando MFE Uno...")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MfeUno, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "button",
     onClick: getUserData
   }, "Obtener usuario"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    type: "button",
+    onClick: apiTest
+  }, "Pegada al api"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     type: "button",
     onClick: logout
   }, "Cerrar session"));
@@ -38259,7 +38297,7 @@ if (false) {} else {
   \**********************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"people-flow-main","version":"1.0.0","description":"Shell con BFF + SPA + Module Federation","scripts":{"dev:client":"webpack --config webpack.config.js --watch --env target=client","dev:server":"nodemon NODE_ENV=development dist/server/server.bundle.js","dev:build":"webpack --config webpack.config.js","dev":"concurrently \\"yarn dev:client\\" \\"yarn dev:server\\"","build:prod":"webpack --config webpack.config.js --mode production","start:prod":"node dist/server/server.bundle.js"},"dependencies":{"axios":"^1.8.4","cors":"^2.8.5","express":"^4.18.2","express-session":"^1.18.1","nconf":"^0.13.0","nodemon":"^3.1.9","passport":"^0.7.0","passport-custom":"^1.1.1","react":"^18.2.0","react-dom":"^18.2.0","uuid":"^11.1.0"},"devDependencies":{"@babel/core":"^7.24.1","@babel/preset-env":"^7.24.1","@babel/preset-react":"^7.23.3","babel-loader":"^9.1.3","concurrently":"^9.1.2","dotenv-webpack":"^8.1.0","html-webpack-plugin":"^5.6.0","source-map-support":"^0.5.21","webpack":"^5.99.5","webpack-cli":"^6.0.1","webpack-dev-server":"^5.0.3","webpack-node-externals":"^3.0.0"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"people-flow-main","version":"1.0.0","description":"Shell con BFF + SPA + Module Federation","scripts":{"dev:client":"webpack --config webpack.config.js --watch --env target=client","dev:server":"nodemon NODE_ENV=development dist/server/server.bundle.js","dev:build":"webpack --config webpack.config.js","dev":"concurrently \\"yarn dev:client\\" \\"yarn dev:server\\"","build:prod":"webpack --config webpack.config.js --mode production","start:prod":"node dist/server/server.bundle.js"},"dependencies":{"axios":"^1.8.4","cors":"^2.8.5","express":"^4.18.2","express-http-proxy":"^2.1.1","express-session":"^1.18.1","nconf":"^0.13.0","nodemon":"^3.1.9","passport":"^0.7.0","passport-custom":"^1.1.1","react":"^18.2.0","react-dom":"^18.2.0","uuid":"^11.1.0"},"devDependencies":{"@babel/core":"^7.24.1","@babel/preset-env":"^7.24.1","@babel/preset-react":"^7.23.3","babel-loader":"^9.1.3","concurrently":"^9.1.2","dotenv-webpack":"^8.1.0","html-webpack-plugin":"^5.6.0","source-map-support":"^0.5.21","webpack":"^5.99.5","webpack-cli":"^6.0.1","webpack-dev-server":"^5.0.3","webpack-node-externals":"^3.0.0"}}');
 
 /***/ }),
 

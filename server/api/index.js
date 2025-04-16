@@ -5,7 +5,6 @@ const { userRouter } = require('../api/auth');
 
 const micrositeApiRouter = express.Router();
 
-
 micrositeApiRouter.use('/', userRouter);
 micrositeApiRouter.use(`/env`, publicEnvMiddleware);
 

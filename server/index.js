@@ -1,9 +1,11 @@
 const express = require('express');
-const { micrositeAppRouter } = require('./app');
-const { micrositeApiRouter } = require('./api');
-const { axiosMiddleware } = require('./middlewares/axios');
+const {micrositeAppRouter} = require('./app');
+const {micrositeApiRouter} = require('./api');
+const {axiosMiddleware} = require('./middlewares/axios');
 const pkg = require('../package.json');
-import { setupAuth } from "./api/auth";
+import {setupAuth} from "./api/auth";
+import {declareProxies} from "./middlewares/proxy";
+
 const app = express();
 const cors = require('cors');
 const PORT = 4000;
@@ -18,6 +20,7 @@ app.use(cors({
 
 setupAuth(app);
 
+declareProxies(app);
 
 app.use(
     `/api/${pkg.name}`,
