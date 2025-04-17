@@ -1,5 +1,5 @@
 const { default: axios } = require("axios");
-const { getHeaders } = require("../../helpers/headers.helper");
+const { getHeaders } = require("@server/helpers/headers.helper");
 const { default: axiosInstance } = require("./axiosInstance");
 
 const axiosMiddleware = (req, res, next) => {

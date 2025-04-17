@@ -1,4 +1,4 @@
-const { getServiceBaseUrl, ServiceKey } = require('../../utils/helpers/service.helper');
+const { getServiceBaseUrl, ServiceKey } = require('@server/utils/helpers/service.helper');
 
 
 const getUserInfo = async ({ axios }) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { INVALID_TOKEN } from '../../utils/genericError';
+import { INVALID_TOKEN } from '@server/utils/genericError';
 
 // Esta es la función que maneja la respuesta de los errores
 const errorResponseHandler = (error) => {

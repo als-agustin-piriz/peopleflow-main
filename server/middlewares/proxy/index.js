@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 const proxy = require('express-http-proxy');
-const {getServiceBaseUrl, ServiceKey} = require('../../utils/helpers/service.helper');
-const {getHeaders} = require('../../helpers/headers.helper');
+const {getServiceBaseUrl, ServiceKey} = require('@server/utils/helpers/service.helper');
+const {getHeaders} = require('@server/helpers/headers.helper');
 
 function injectHeaders(req) {
     return opts => {

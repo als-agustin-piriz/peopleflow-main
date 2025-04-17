@@ -1,4 +1,4 @@
-const UserResponse = require('../../models/UserResponse');
+const UserResponse = require('@server/models/UserResponse');
 
 const getSession = async (request, response) => {
   const { user } = request;

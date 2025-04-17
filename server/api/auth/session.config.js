@@ -1,6 +1,5 @@
 import { v4 } from 'uuid';
 
-console.log('nodeenv', process.env.NODE_ENV)
 const localEnv = process.env.NODE_ENV === 'development'
 
 const sessionConfig = {

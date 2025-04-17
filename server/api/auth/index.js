@@ -7,6 +7,7 @@ const { HttpResponseCodes } = require('../../utils/constants/http.constant');
 const { ErrorResponse } = require('../../models/ServiceResponse');
 require('./strategy')
 require('./session')
+const cors = require("cors");
 
 const userRouter = express.Router();
 
@@ -53,6 +54,10 @@ userRouter.post('/logout', (req, res, next) => {
 
 
 const setupAuth = (app) => {
+  app.use(cors({
+    origin: 'http://localhost:4000',
+    credentials: true,
+  }));
   app.use(session(sessionConfig.default));
   app.use(passport.initialize());
   app.use(passport.session());
