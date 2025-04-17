@@ -19,7 +19,7 @@ module.exports = (env = {}) => {
 const clientConfig = {
     name: 'client',
     target: 'web',
-    entry: './client/index.jsx',
+    entry: './client/index.tsx',
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist/client'),
@@ -27,16 +27,16 @@ const clientConfig = {
         publicPath: '/static/',
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.tsx', '.ts', '.js']
     },
     devtool: 'source-map',
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
-                use: 'babel-loader',
-                exclude: /node_modules/,
-            },
+                test: /\.(ts|tsx)$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/
+            }
         ],
     },
     plugins: [
