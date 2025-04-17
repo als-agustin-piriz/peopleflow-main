@@ -2,7 +2,10 @@ import axios from 'axios';
 import React, {lazy, Suspense, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import pkg from '../package.json';
+import {BrowserRouter} from 'react-router-dom';
+import AppRouter from "./AppRouter";
 
+// Tipar correctamente import dinámico (Module Federation)
 const MfeUno = lazy(() => import('mfeUno/App'));
 
 const App: React.FC = () => {
@@ -59,13 +62,9 @@ const App: React.FC = () => {
 
     return (
         <div>
-            <h1>Soy el Shell</h1>
-            <Suspense fallback={<div>Cargando MFE Uno...</div>}>
-                <MfeUno/>
-            </Suspense>
-            <button type="button" onClick={getUserData}>Obtener usuario</button>
-            <button type="button" onClick={apiTest}>Pegada al api</button>
-            <button type="button" onClick={logout}>Cerrar sesión</button>
+            <BrowserRouter>
+                <AppRouter/>
+            </BrowserRouter>
         </div>
     );
 };

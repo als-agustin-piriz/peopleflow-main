@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {ModuleFederationPlugin} = require('webpack').container;
+const { ModuleFederationPlugin } = require('webpack').container;
 const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
 const alias = require('./alias.config');
@@ -27,6 +27,7 @@ const clientConfig = {
         publicPath: '/static/',
     },
     resolve: {
+        alias,
         extensions: ['.tsx', '.ts', '.js']
     },
     devtool: 'source-map',
@@ -46,8 +47,8 @@ const clientConfig = {
                 mfeUno: 'mfeUno@http://localhost:3001/remoteEntry.js',
             },
             shared: {
-                react: {singleton: true, eager: true, requiredVersion: '18.2.0'},
-                'react-dom': {singleton: true, eager: true, requiredVersion: '18.2.0'},
+                react: { singleton: true, eager: true, requiredVersion: '18.2.0' },
+                'react-dom': { singleton: true, eager: true, requiredVersion: '18.2.0' },
             },
         }),
         new HtmlWebpackPlugin({
@@ -69,7 +70,7 @@ const serverConfig = {
     externals: [nodeExternals()],
     resolve: {
         alias,
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx']
     },
     module: {
         rules: [
