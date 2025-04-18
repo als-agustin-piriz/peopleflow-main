@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
+
+const MfeUno = lazy(() => import('mfeUno/App'));
 
 const Reception: React.FC = () => {
     return (
-        <div className="bg-red-500 text-white p-4"><h1 className="text-sm w-30">Reception</h1></div>
+        <Suspense fallback={<div>Cargando MFE Uno...</div>}>
+            <MfeUno/>
+        </Suspense>
     );
 };
 

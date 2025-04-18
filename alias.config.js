@@ -9,6 +9,8 @@ const specificModules = {
 
 module.exports = {
     '@client': path.resolve('./client/'),
+    '@state': path.resolve('./client/state'),
+    '@components': path.resolve('./client/components'),
     '@server': path.resolve('./server/'),
     ...specificModules,
 };

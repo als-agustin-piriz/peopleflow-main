@@ -1,12 +1,11 @@
-import React, { Suspense, lazy } from 'react';
-
-const MfeUno = lazy(() => import('mfeUno/App'));
+import React from 'react';
 
 const DashboardHome: React.FC = () => {
+
     return (
-        <Suspense fallback={<div>Cargando MFE Uno...</div>}>
-            <MfeUno />
-        </Suspense>
+        <div className="flex p-4 w-full gap-1">
+            <h1 className="text-lg text-bold w-30">Home</h1>
+        </div>
     );
 };
 
