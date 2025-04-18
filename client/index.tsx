@@ -3,6 +3,7 @@ import React, {lazy, Suspense, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import pkg from '../package.json';
 import {BrowserRouter} from 'react-router-dom';
+import './tailwind.css';
 import AppRouter from "./AppRouter";
 
 // Tipar correctamente import dinámico (Module Federation)
