@@ -1,1 +1,1 @@
-export const BASE_URL = '/api/people-flow-main';
+export const BFF_URL = '/api/people-flow-main';

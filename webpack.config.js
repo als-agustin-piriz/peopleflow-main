@@ -42,6 +42,14 @@ const clientConfig = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
+            {
+                test: /\.(woff2?|ttf|otf|eot)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name][ext]', // Esto los colocará en dist/client/static/fonts/
+                    publicPath: '/static/',
+                },
+            }
         ],
     },
     plugins: [

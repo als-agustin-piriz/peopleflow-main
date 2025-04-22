@@ -1,5 +1,5 @@
 import {lazy} from "react";
-import DashboardHome from "@home/containers/DashboardHome";
+import DashboardHome from "@home/containers/DashboardHome/DashboardHome";
 import Publication from "@recruitment/containers/Publication";
 import Reception from "@recruitment/containers/Reception";
 import routes from "../routes";

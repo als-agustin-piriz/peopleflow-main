@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-LightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-RegularItalic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-MediumItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-Semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-SemiboldItalic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-Heavy.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Regola Neue';
+    src: url('../assets/fonts/FTRegolaNeueTrial-HeavyItalic.woff2') format('woff2');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}

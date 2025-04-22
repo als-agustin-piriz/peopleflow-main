@@ -4,7 +4,11 @@ module.exports = {
         './client/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                regola: ['"Regola Neue"', 'sans-serif'],
+            },
+        },
     },
     plugins: [],
 };

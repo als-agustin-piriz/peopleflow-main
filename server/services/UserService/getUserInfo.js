@@ -1,6 +1,5 @@
 const { getServiceBaseUrl, ServiceKey } = require('@server/utils/helpers/service.helper');
 
-
 const getUserInfo = async ({ axios }) => {
   const BASE_URL = getServiceBaseUrl(ServiceKey.UserService);
 

@@ -1,6 +1,9 @@
 import React from 'react';
-import {Routes, Route, Navigate, useLocation} from 'react-router-dom';
-import internalRoutes from "./configuration/internalRoutes";
+import {Routes, Route, Navigate} from 'react-router-dom';
+import internalRoutes from './configuration/internalRoutes';
+import ProtectedRoute from '@components/ProtectedRoutes';
+import DashboardLayout from '@components/DasboardLayout';
+import Login from "@auth/containers/Login";
 
 type AppRoute = {
     path: string;
@@ -10,7 +13,6 @@ type AppRoute = {
 
 const AppRouter: React.FC = () => {
     const userModules = ['recruitment:reception', 'home'];
-
     const routes: AppRoute[] = internalRoutes;
 
     const enabledRoutes = routes.filter(route =>
@@ -19,18 +21,32 @@ const AppRouter: React.FC = () => {
 
     return (
         <Routes>
-            {enabledRoutes.map(route => (
-                <Route key={route.path} path={route.path} element={route.element}/>
-            ))}
-            {/* Default route */}
+            {/* Public Routes */}
+            <Route path="/login" element={<Login/>}/>
+
+            {/* Protected routes */}
             <Route
-                path="*"
+                path="/*"
                 element={
-                    userModules.includes('home') ? (
-                        <Navigate to="/" replace/>
-                    ) : (
-                        <div>No tenés acceso a ninguna sección.</div>
-                    )
+                    <ProtectedRoute>
+                        <DashboardLayout>
+                            <Routes>
+                                {enabledRoutes.map(route => (
+                                    <Route key={route.path} path={route.path} element={route.element}/>
+                                ))}
+                                <Route
+                                    path="*"
+                                    element={
+                                        userModules.includes('home') ? (
+                                            <Navigate to="/" replace/>
+                                        ) : (
+                                            <div>No tenés acceso a ninguna sección.</div>
+                                        )
+                                    }
+                                />
+                            </Routes>
+                        </DashboardLayout>
+                    </ProtectedRoute>
                 }
             />
         </Routes>

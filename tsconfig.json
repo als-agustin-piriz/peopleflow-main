@@ -18,9 +18,15 @@
     "baseUrl": ".",
     "paths": {
       "@home/*": ["client/modules/home/*"],
+      "@auth/*": ["client/modules/auth/*"],
       "@recruitment/*": ["client/modules/recruitment/*"],
       "@state/*": ["client/state/*"],
-      "@components/*": ["client/components/*"]
+      "@components/*": ["client/components/*"],
+      "@utils/*": ["client/utils/*"],
+      "@routes/*": ["client/routes/*"],
+      "@services/*": ["client/services/*"],
+      "@configuration/*": ["client/configuration/*"],
+      "@context/*": ["client/context/*"],
     }
   },
   "include": [

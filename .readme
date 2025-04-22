@@ -14,7 +14,7 @@ Este proyecto implementa una arquitectura basada en **Module Federation** con un
 ## 🧱 Arquitectura
 
 - **Webpack Client Config**:
-  - Compila y expone el frontend (`client/index.tsx`)
+  - Compila y expone el frontend (`client/DashboardHome.tsx`)
   - Usa `ModuleFederationPlugin` para cargar microfrontends remotos
   - Usa `HtmlWebpackPlugin` para generar `index.html` con placeholder `__DATA__`
 
