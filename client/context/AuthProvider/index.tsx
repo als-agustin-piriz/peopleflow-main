@@ -49,7 +49,8 @@ export const UserProvider: React.FC<Props> = ({children}) => {
     const fetchUserLogged = async () => {
         try {
             const response = await getUser();
-            dispatch(login({name: response.name}));
+            if (!!response?.name)
+                dispatch(login({name: response.name}));
             setIsUserFetched(true);
         } catch (error) {
             console.error("Fetching user failed:", error);

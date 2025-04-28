@@ -1,31 +1,37 @@
-import {lazy} from "react";
 import DashboardHome from "@home/containers/DashboardHome/DashboardHome";
 import Publication from "@recruitment/containers/Publication";
 import Reception from "@recruitment/containers/Reception";
 import routes from "../routes";
+import {MaskOffIcon, TextAlignMiddleIcon, TokensIcon} from "@radix-ui/react-icons";
 
-type InternalRoute = {
+export type InternalRoute = {
+    title: string;
     path: string;
     element: React.ReactElement;
-    requiredModule: string;
+    requiredModule: string[];
+    icon: React.ReactElement;
 };
 
-const internalRoutes: InternalRoute[] = [
+export const internalRoutes: InternalRoute[] = [
     {
-        path: routes.RECTRUITMENT_RECEPTION,
-        element: <Reception/>,
-        requiredModule: 'recruitment:reception'
-    },
-    {
-        path: routes.RECTRUITMENT_PUBLICATION,
-        element: <Publication/>,
-        requiredModule: 'recruitment:publication'
-    },
-    {
+        title: "Inicio",
         path: routes.HOME,
         element: <DashboardHome/>,
-        requiredModule: 'home'
+        requiredModule: ['home'],
+        icon: <TokensIcon/>
     },
+    {
+        title: "Recepción",
+        path: routes.RECTRUITMENT_RECEPTION,
+        element: <Reception/>,
+        requiredModule: ['recruitment:reception'],
+        icon: <TextAlignMiddleIcon/>
+    },
+    {
+        title: "Publicar vacante",
+        path: routes.RECTRUITMENT_PUBLICATION,
+        element: <Publication/>,
+        requiredModule: ['recruitment:publication'],
+        icon: <MaskOffIcon/>
+    }
 ];
-
-export default internalRoutes;

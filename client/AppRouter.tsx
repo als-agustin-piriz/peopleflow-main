@@ -1,23 +1,20 @@
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import internalRoutes from './configuration/internalRoutes';
+import {internalRoutes} from '@configuration/internalRoutes';
 import ProtectedRoute from '@components/ProtectedRoutes';
 import DashboardLayout from '@components/DasboardLayout';
 import Login from "@auth/containers/Login";
 
-type AppRoute = {
-    path: string;
-    element: React.ReactElement;
-    requiredModule: string;
-};
-
 const AppRouter: React.FC = () => {
     const userModules = ['recruitment:reception', 'home'];
-    const routes: AppRoute[] = internalRoutes;
 
-    const enabledRoutes = routes.filter(route =>
-        userModules.includes(route.requiredModule)
-    );
+    const routesWithMatches = internalRoutes.map(route => {
+        const matchingModules = route.requiredModule.filter(module => userModules.includes(module));
+        return {
+            ...route,
+            matchingModules
+        };
+    });
 
     return (
         <Routes>
@@ -31,7 +28,7 @@ const AppRouter: React.FC = () => {
                     <ProtectedRoute>
                         <DashboardLayout>
                             <Routes>
-                                {enabledRoutes.map(route => (
+                                {routesWithMatches?.map(route => (
                                     <Route key={route.path} path={route.path} element={route.element}/>
                                 ))}
                                 <Route

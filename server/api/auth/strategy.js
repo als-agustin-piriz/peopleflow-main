@@ -1,9 +1,9 @@
 const passport = require('passport');
-const { Strategy: CustomStrategy } = require('passport-custom');
+const {Strategy: CustomStrategy} = require('passport-custom');
 const axios = require('axios');
 
 passport.use('custom-login', new CustomStrategy(async (req, done) => {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
     try {
         const response = await axios.post('https://api.externo.com/login', {
             email,
@@ -14,13 +14,14 @@ passport.use('custom-login', new CustomStrategy(async (req, done) => {
             at: 'asdadas',
             name: 'Agu',
             lastName: 'Piriz',
-            email: 'ap@test.com'
+            email: 'ap@test.com',
+            modules: ['recruitment:reception', 'home']
 
         }
 
         const user = mock;
         return done(null, user);
     } catch (err) {
-        return done(null, false, { message: 'Login failed' });
+        return done(null, false, {message: 'Login failed'});
     }
 }));

@@ -16,6 +16,8 @@ module.exports = {
     '@services': path.resolve('./client/services'),
     '@context': path.resolve('./client/context'),
     '@configuration': path.resolve('./client/configuration'),
+    '@types': path.resolve('./client/types'),
+    '@assets': path.resolve('./client/assets'),
     '@components': path.resolve('./client/components'),
     '@server': path.resolve('./server/'),
     ...specificModules,

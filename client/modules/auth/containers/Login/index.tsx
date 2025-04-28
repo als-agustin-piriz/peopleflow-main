@@ -15,7 +15,7 @@ const Login: React.FC = () => {
         e.preventDefault();
         try {
             const {data: loginData} = await axios.post(`/api/people-flow-main/login`);
-            dispatch(login({name: loginData.user.name}));
+            dispatch(login({name: loginData.user.name, email: loginData.user.email, modules: loginData.user.modules}));
             navigate('/');
         } catch (error) {
             console.error('Error en login:', error);
