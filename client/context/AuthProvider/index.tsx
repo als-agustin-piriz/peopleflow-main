@@ -1,10 +1,4 @@
-import React, {
-    useContext,
-    useEffect,
-    useState,
-    createContext,
-    ReactNode,
-} from "react";
+import React, {createContext, ReactNode, useContext, useEffect, useState,} from "react";
 import axios from "axios";
 import getUser from "@services/auth/getUser";
 import {login, logout} from "@state/slices/userSlice";
@@ -50,7 +44,7 @@ export const UserProvider: React.FC<Props> = ({children}) => {
         try {
             const response = await getUser();
             if (!!response?.name)
-                dispatch(login({name: response.name}));
+                dispatch(login(response));
             setIsUserFetched(true);
         } catch (error) {
             console.error("Fetching user failed:", error);

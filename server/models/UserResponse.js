@@ -6,6 +6,7 @@ const UserResponse = data => {
     name: data.name,
     lastName: data.lastName,
     email: data.email,
+    modules: data.modules,
   };
 };
 

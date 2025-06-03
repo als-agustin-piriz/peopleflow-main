@@ -1,14 +1,11 @@
 const passport = require('passport');
 const {Strategy: CustomStrategy} = require('passport-custom');
-const axios = require('axios');
+const {userLogin} = require("@server/services/UserService");
 
 passport.use('custom-login', new CustomStrategy(async (req, done) => {
-    const {email, password} = req.body;
+    // const {email, password} = req.body;
     try {
-        const response = await axios.post('https://api.externo.com/login', {
-            email,
-            password,
-        });
+        // const response = await userLogin(email, password);
 
         const mock = {
             at: 'asdadas',
